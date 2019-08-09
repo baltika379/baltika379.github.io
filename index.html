@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Балтика969696</title>
+	<link rel="shortcut icon" href="bottle.png" type="image/png">
+</head>
+<body>
+	<canvas id="canv">бом бом в другом бравзере запускай</canvas>
+	<script type="text/javascript">
+		var canv = document.getElementById("canv");
+		var ctx  = canv.getContext("2d");
+		canv.width=window.innerWidth;
+		canv.height=window.innerHeight;
+		wid = canv.width;
+		hei = canv.height;
+		var tri = new Image();
+		tri.src = "3.png";
+		var sem = new Image();
+		sem.src = "7.png";
+		var nin = new Image();
+		nin.src = "9.png";
+		function rand(min, max) {
+ 			return Math.floor(Math.random() * (max - min)) + min;
+		}
+		nin.onload = function(){
+			var i = setInterval(function(){
+
+				ctx.fillStyle = "rgba(255,255,255,0.05)";
+				ctx.fillRect(0,0,wid,hei);
+				ctx.drawImage(tri,rand(-50,wid),rand(-200,hei));
+				ctx.drawImage(sem,rand(-50,wid),rand(-200,hei));
+				ctx.drawImage(nin,rand(-50,wid),rand(-200,hei));
+
+			},100);
+		}
+	</script>
+</body>
+</html>
