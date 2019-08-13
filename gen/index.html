@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Балтос</title>
+	<link rel="shortcut icon" href="3.png" type="image/png">
+	<style type="text/css">
+		body{
+			text-align: center;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="211px" height="557px" id="canvas"></canvas>
+	<div>Название : <span id="name"></span></div>
+	<div>Тип : <span id="type"></span></div>
+	<div>Крепкость : <span id="alc"></span></div>
+	<script type="text/javascript">
+		function rand(min, max) {
+ 			return Math.floor(Math.random() * (max - min)) + min;
+		}
+		function getRandomColor() {
+		    var letters = '0123456789ABCDEF';
+		    var color = '#';
+		    for (var i = 0; i < 6; i++) {
+		    	color += letters[Math.floor(Math.random() * 16)];
+		    }
+		  	return color;
+		}
+		function getType(){
+			var types = ["Пиво","Водка","Абсент","Вино","Коктейль","Виски","Джин","Тоник","Ликер","Квас","Текила","Коньяк","Газировка","Бренди","Шампанское","Раккия","Чача","Ром"];
+			var getrandtype = rand(0,types.length);
+			var type = types[getrandtype];
+			return type;
+		}
+		var canv = document.getElementById("canvas");
+		var ctx  = canv.getContext("2d");
+		var masks = new Image();
+		masks.src= "mask.png";
+		var balticnum=rand(0,123);
+		var baltype=getType();
+		function getAlc(){
+			var alc;
+			switch(baltype){
+				case "Газировка":
+					alc=0;
+					break;
+				case "Квас":
+					alc=rand(0,2);
+					break;
+				case "Пиво":
+				case "Коктейль":
+					alc=rand(3,9);
+					break;
+				case "Вино":
+					alc=rand(9,22);
+					break;
+				case "Шампанское":
+					alc=rand(9,18);
+					break;
+				default:
+					alc=rand(25,80);
+			}
+			return alc+"%";
+		}
+		var balalc=getAlc();
+		document.getElementById("name").innerHTML="Балтика "+balticnum;
+		document.getElementById("type").innerHTML=baltype;
+		document.getElementById("alc").innerHTML=balalc;
+		masks.onload = function(){
+			ctx.fillStyle=getRandomColor();
+			ctx.fillRect(0,60,211,460);
+			ctx.drawImage(masks,0,0);
+			ctx.textBaseline = "top";
+			ctx.textAlign = "center";
+			ctx.font="100px Verdana";
+			ctx.fillStyle="white";
+			ctx.lineWidth=7;
+			ctx.strokeStyle="#bd9149";
+			ctx.strokeText(balticnum,104,282,160);
+			ctx.fillText(balticnum,104,282,160);
+			ctx.font="30px Verdana";
+			ctx.strokeText(baltype,104,179);
+			ctx.fillText(baltype,104,179);
+			ctx.strokeText(balalc,104,469);
+			ctx.fillText(balalc,104,469);
+		}
+
+	</script>
+</body>
+</html>
