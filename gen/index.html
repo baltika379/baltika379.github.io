@@ -37,7 +37,9 @@
 		var canv = document.getElementById("canvas");
 		var ctx  = canv.getContext("2d");
 		var masks = new Image();
+		var shadow= new Image();
 		masks.src= "mask.png";
+		shadow.src= "shad.png";
 		var balticnum=rand(0,123);
 		var baltype=getType();
 		function getAlc(){
@@ -85,6 +87,7 @@
 			ctx.fillText(baltype,104,179);
 			ctx.strokeText(balalc,104,469);
 			ctx.fillText(balalc,104,469);
+			ctx.drawImage(shadow,0,0);
 		}
 
 	</script>
