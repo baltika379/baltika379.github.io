@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Ловупка Залупка</title>
+	<style type="text/css">body{text-align:center;}#get{font-size: 25px;}#djo,#tra{font-size: 20px;}</style>
+</head>
+<body>
+	<canvas width="764px" height="450" id="canvas"></canvas>
+	<br>
+	<input type="text" name="" value="Ловушка" id="tra">
+	<br>
+	<input type="text" name="" value="Джокера" id="djo">
+	<br>
+	<button id="get" onclick="geta()">Заминировать ловушку</button>
+	<br>
+	<button id="get" onclick="saveCanvasAsImageFile()">Сохранить ловушку</button>
+	<script type="text/javascript">
+		var canv = document.getElementById("canvas");
+		var ctx  = canv.getContext("2d");
+		var joktrap= new Image();
+			joktrap.src="trap.jpg";
+		var joktrape= new Image();
+			joktrape.src="trape.png";
+		function getImage(canvas){
+			var imageData = canvas.toDataURL();
+			var image = new Image();
+			image.src = imageData;
+			return image;
+		}
+			 
+		function saveImage(image) {
+			var link = document.createElement("a");
+		 
+			link.setAttribute("href", image.src);
+			link.setAttribute("download", "canvasImage");
+			link.click();
+		}
+		function saveCanvasAsImageFile(){
+			var image = getImage(document.getElementById("canvas"));
+			saveImage(image);
+		}	
+		function geta(){
+			var trap=document.getElementById("tra").value;
+			var joker=document.getElementById("djo").value;
+			ctx.textBaseline = "top";
+			ctx.textAlign = "center";
+			ctx.fillStyle="white";
+			ctx.fillRect(0,0,764,450);
+			ctx.fillStyle="black";
+			ctx.drawImage(joktrap,80,-50);
+			ctx.font="bold 100px times new roman";
+			ctx.fillText(trap,382,255);
+			ctx.fillText(joker,382,340);
+		}
+		joktrape.onload = function(){
+			geta();
+		}
+	</script>
+</body>
+</html>
